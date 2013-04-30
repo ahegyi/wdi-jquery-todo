@@ -29,7 +29,6 @@ $(document).ready(function() {
     var newItem = new TodoItem(newText, false, null);
     todoArr.push(newItem);
     updateLists();
-    console.log(todoArr);
   });
 
   // type must be "todo" or "completed"
@@ -58,8 +57,7 @@ $(document).ready(function() {
           unCompleteItem(e.target);
         });
         newTodo.children('button').on('click', function (e) {
-          //($(e.target).parent('li')).hide( "drop", { direction: "up" }, "slow", function () { deleteItem(e.target, "completed"); } );
-          deleteItem(e.target, "completed");
+          ($(e.target).parent('li')).hide("blind", "easeOutQuint", "fast", function () { deleteItem(e.target, "completed"); } );
         });
         completedCount += 1;
       }
@@ -70,8 +68,7 @@ $(document).ready(function() {
           completeItem(e.target);
         });
         newTodo.children('button').on('click', function (e) {
-          //($(e.target).parent('li')).hide( "drop", { direction: "up" }, "slow", function () { deleteItem(e.target, "todo"); } );
-          deleteItem(e.target, "todo");
+          ($(e.target).parent('li')).hide("blind", "easeOutQuint", "fast", function () { deleteItem(e.target, "todo"); } );
         });
         todoCount += 1;
       }
@@ -79,10 +76,10 @@ $(document).ready(function() {
 
     // only show completeds if there are some to show
     if (completedCount > 0) {
-      completedContainer.show();
+      completedContainer.show("blind", "easeInQuad", 800);
     }
     else {
-      completedContainer.hide();
+      completedContainer.hide("blind", "easeOutQuad", 800);
     }
 
     if (todoCount === 0) {
